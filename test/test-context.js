@@ -5,48 +5,48 @@ var assert = require('chai').assert,
     context = require('../lib/context.js');
 
 describe('context', function () {
-    it('.query should be a subtask', function (done) {
-        assert.equal(true, testlib.isSubtask(testlib.getMockContext().query));
+    it('.query should be a subtask creator', function (done) {
+        assert.equal(true, testlib.isSubtaskCreator(testlib.getMockContext().query));
         done();
     });
 
-    it('.param should be a subtask', function (done) {
-        assert.equal(true, testlib.isSubtask(testlib.getMockContext().param));
+    it('.param should be a subtask creator', function (done) {
+        assert.equal(true, testlib.isSubtaskCreator(testlib.getMockContext().param));
         done();
     });
 
-    it('.cookie should be a subtask', function (done) {
-        assert.equal(true, testlib.isSubtask(testlib.getMockContext().cookie));
+    it('.cookie should be a subtask creator', function (done) {
+        assert.equal(true, testlib.isSubtaskCreator(testlib.getMockContext().cookie));
         done();
     });
 
-    it('.data should be a subtask', function (done) {
-        assert.equal(true, testlib.isSubtask(testlib.getMockContext().data));
+    it('.data should be a subtask creator', function (done) {
+        assert.equal(true, testlib.isSubtaskCreator(testlib.getMockContext().data));
         done();
     });
 
     it('.module should be a pipe', function (done) {
-        assert.equal(true, testlib.isPipe(testlib.getMockContext().module));
+        assert.equal(true, testlib.isSubtaskCreatorFinder(testlib.getMockContext().module));
         done();
     });
 
     it('.page should be a pipe', function (done) {
-        assert.equal(true, testlib.isPipe(testlib.getMockContext().page));
+        assert.equal(true, testlib.isSubtaskCreatorFinder(testlib.getMockContext().page));
         done();
     });
 
     it('.react should be a pipe', function (done) {
-        assert.equal(true, testlib.isPipe(testlib.getMockContext().react));
+        assert.equal(true, testlib.isSubtaskCreatorFinder(testlib.getMockContext().react));
         done();
     });
 
     it('.dreact should be a pipe', function (done) {
-        assert.equal(true, testlib.isPipe(testlib.getMockContext().dreact));
+        assert.equal(true, testlib.isSubtaskCreatorFinder(testlib.getMockContext().dreact));
         done();
     });
 
-    it('.task should be a subtask', function (done) {
-        assert.equal(true, testlib.isSubtask(testlib.getMockContext().task));
+    it('.task should be a subtask creator', function (done) {
+        assert.equal(true, testlib.isSubtaskCreator(testlib.getMockContext().task));
         done();
     });
 });
