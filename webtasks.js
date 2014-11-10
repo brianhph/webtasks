@@ -18,6 +18,7 @@ if (!module.parent) {
     .use('/1', app.middleware('page', 'sample'))
     .use('/2', app.middleware('page', 'sample2'))
     .use('/3', app.middleware('page', 'sample3'))
+    .use('/search/:property/product', app.middleware('page', 'srp'))
     .listen(3000);
     console.log('Webtasks started on port 3000');
 }
