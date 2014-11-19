@@ -29,10 +29,11 @@
     "node-jsx": "0.11.0",
     "react": "0.11.2",
     "reactify": "0.14.0",
-    "subtask": "0.0.6"
+    "subtask": "0.0.7-4"
   },
   "scripts": {
     "build": "gulp",
+    "start": "gulp develop",
     "coverage": "istanbul cover -- _mocha",
     "lint": "jshint webtasks.js lib/",
     "test": "mocha"

@@ -20,8 +20,13 @@ describe('context', function () {
         done();
     });
 
-    it('.data should be a subtask creator', function (done) {
-        assert.equal(true, testlib.isSubtaskCreator(testlib.getMockContext().data));
+    it('.data should be a subtask creator locator', function (done) {
+        assert.equal(true, testlib.isSubtaskCreatorFinder(testlib.getMockContext().data));
+        done();
+    });
+
+    it('.data("getProdcut") should be a subtask creator', function (done) {
+        assert.equal(true, testlib.isSubtaskCreator(testlib.getMockContext().data('getProduct')));
         done();
     });
 
@@ -68,5 +73,57 @@ describe('context', function () {
     it('.input("getSomeParams") should be a subtask', function (done) {
         assert.equal(true, testlib.isSubtask(testlib.getMockContext().input('getSomeParams')));
         done();
+    });
+
+    it('.reactBindStr() should return null when no react modules', function (done) {
+        assert.equal(null, testlib.getMockContext().reactBindStr());
+        done();
+    });
+
+    it('.reactBindStr() should return js code for client to bind react modules', function (done) {
+        var CX = testlib.getMockContext();
+        CX.taskPool.react = {Rid: {jsx: 'Test', props: [1, 2]}};
+        assert.equal('var React=require("react"),Test=require("./react/Test.jsx");React.renderComponent(Test.apply(Test,[1,2]), document.getElementById("Rid"))', CX.reactBindStr());
+        done();
+    });
+});
+
+describe('context tasks', function () {
+    it('module("header")() should be a success task', function (done) {
+        testlib.getMockContext().module('header')().execute(function (D) {
+            assert.equal(true, D !== undefined);
+            done();
+        });
+    });
+
+    it('page("sample")() should be a success task', function (done) {
+        testlib.getMockContext().page('sample')().execute(function (D) {
+            assert.equal(true, D !== undefined);
+            done();
+        });
+    });
+
+    it('react("path")(productData) should be a success task', function (done) {
+        testlib.getMockContext().react('Path')({
+            path: [
+                {id: 1, title: 'root'},
+                {id: 3, title: 'second'},
+                {id: 321, title: 'final'}
+            ]
+        }).execute(function (D) {
+            assert.equal('<ul class="path"><li><a href="/cate/1">root</a></li><li><a href="/cate/3">second</a></li><li><a href="/cate/321">final</a></li></ul>', D);
+            done();
+        });
+    });
+
+    it('react("path")(badData) should be a failed task', function (done) {
+        var CX = testlib.getMockContext(),
+            T = CX.react('Path')({});
+
+        T.execute(function (D) {
+            assert.equal(undefined, D);
+            assert.equal(1, CX.taskPool.errors.length);
+            done();
+        });
     });
 });
