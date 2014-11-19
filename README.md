@@ -19,7 +19,7 @@ Make developer decouple complex web application logic into small logic pieces fo
 * **Data**: call api or get data from storage
 * **Module**: handle presentation logics then rendered with a view
 * **Page**: composite modules then rendered with a view
-* **React**: handle presentation logics then rendered with properties
+* **React**: handle presentation logics then rendered with given properties (data)
 * **Ajax**: collect data then output as JSON
 
 Getting Started
@@ -85,7 +85,7 @@ About Webtask
 
 Webtask is extended from <a href="https://github.com/zordius/subtask.js">subtask</a> with <a href="#context-api">Context API</a> . Webtasks are automatic singleton per-request, developers do not need to worry about api optimization or task sequence.
 
-For example, to deliver a article page for login user brings this task depdency:
+For example, to deliver an article page for login user brings this task depdency:
 
 ```
 [checkLogin] -> [getArticle] -> [setPageTitle] -> [composeModules]
