@@ -89,6 +89,13 @@ describe('context', function () {
 });
 
 describe('context tasks', function () {
+    it('data("getProduct")(id) should be a success task', function (done) {
+        testlib.getMockContext().data('getProduct')(123).execute(function (D) {
+            assert.equal(true, D !== undefined);
+            assert.equal('this is sample product title (id=123)', D.title);
+            done();
+        });
+    });
     it('module("header")() should be a success task', function (done) {
         testlib.getMockContext().module('header')().execute(function (D) {
             assert.equal(true, D !== undefined);
@@ -103,7 +110,7 @@ describe('context tasks', function () {
         });
     });
 
-    it('react("path")(productData) should be a success task', function (done) {
+    it('react("Path")(productData) should be a success task', function (done) {
         testlib.getMockContext().react('Path')({
             path: [
                 {id: 1, title: 'root'},
@@ -116,7 +123,7 @@ describe('context tasks', function () {
         });
     });
 
-    it('react("path")(badData) should be a failed task', function (done) {
+    it('react("Path")(badData) should be a failed task', function (done) {
         var CX = testlib.getMockContext(),
             T = CX.react('Path')({});
 
@@ -125,5 +132,14 @@ describe('context tasks', function () {
             assert.equal(1, CX.taskPool.errors.length);
             done();
         });
+    });
+
+    it('dreact("Bug")() should be a failed task', function (done) {
+        var CX = testlib.getMockContext(),
+            T = CX.dreact('Bug')();
+
+        assert.equal(1, CX.taskPool.errors.length);
+        assert.equal('MODULE_NOT_FOUND', CX.taskPool.errors[0].code);
+        done();
     });
 });
