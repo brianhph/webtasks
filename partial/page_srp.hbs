@@ -1,0 +1,41 @@
+<!DOCTYPE HTML>
+<html class="{{page_class}}">
+<head>
+<title>{{title}}</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+{{#each meta}}
+<meta name="{{name}}" content="{{content}}/>
+{{/each}}
+{{#each ogmeta}}
+<meta property="og:{{property}}" content="{{content}}"/>
+{{/each}}
+{{#each link}}
+<link rel="{{rel}}" type="{{type}}"  href="{{href}}" />
+{{/each}}
+<link rel="stylesheet" href="https://s.yimg.com/tu/srp/srpospd_141113b.css" />
+</head>
+<body class="p_shopping SHPPS01">
+    <div id="yaft_page">
+        <div id="hd">
+            <div id="uh" class="yui3-u-1 header">
+                <div class="hd">
+                    {{{eyebrow}}}
+                </div>
+                <div class="bd wide">
+                    <div class="yui3-g wrap">
+                        {{#each headerGroup}}{{{.}}}{{/each}}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="bd">
+        </bd>
+        <div id="ft">
+        </div>
+    </div>
+</body>
+<script src="/static/js/react.js"></script>
+<script src="/static/js/main.js"></script>
+<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+{{#if dreact}}<script>{{{dreact}}}</script>{{/if}}
+</html>
